@@ -22,8 +22,9 @@ class InventoryItem(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='items')
 
+    ordering = ['-date_added']
     def __str__(self):
-        return f"{self.name} - Category{self.category}"
+        return f"{self.name} - Category: {self.category}"
 
 
 class InventoryChangeLog(models.Model):
