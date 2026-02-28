@@ -1,2 +1,2 @@
-# Airbnb_Capstone_project
+# Capstone_project
 Building from scratch a Capstone final project.
