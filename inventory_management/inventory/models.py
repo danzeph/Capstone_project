@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 
 
 class InventoryItem(models.Model):
-    """Inventory item Model with foreign keys(user, and category)"""
+    """Inventory item Model with user as a foreign key"""
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     quantity = models.PositiveIntegerField()
@@ -20,13 +20,19 @@ class InventoryItem(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     date_added = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='inventories')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='items')
 
     def __str__(self):
         return f"{self.name} - Category{self.category}"
 
 
 class InventoryChangeLog(models.Model):
+    """
+    Iventory_change log model for logging changes with an item
+    fields: 
+        item - get's model deleted upon deletion of an item
+        user - sets to null upon deletion of item to keep log safe
+    """
     item = models.ForeignKey(InventoryItem, on_delete=models.CASCADE, related_name='changes')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     old_quantity = models.PositiveIntegerField()
