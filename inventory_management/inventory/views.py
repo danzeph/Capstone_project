@@ -9,8 +9,6 @@ from django.contrib.auth.models import User
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objets.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.AllowAny]
-
 
 
 class InventoryItemViewSet(viewsets.ModelViewSet):
