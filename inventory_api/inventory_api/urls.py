@@ -26,6 +26,9 @@ urlpatterns = [
 
     # Users API
     path('api/users/', include('users.urls')),
+    
+    # inventory api
+    path('api/inventory/', include('inventory.urls')),
 
     # JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

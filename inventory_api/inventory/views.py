@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from inventory.permissions import IsOwner
 from inventory.models import InventoryItem, InventoryChangeHistory
-from inventory.serializers import InventoryChangeHistorySerializer, InventoryItemSerializer, InventoryItemSerilizer, InventoryChangehistorySerializer
+from inventory.serializers import InventoryChangeHistorySerializer, InventoryItemSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated
@@ -48,4 +48,4 @@ class InventoryHistoryViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         return InventoryChangeHistory.objects.filter(
             item__owner=self.request.user
-        ).order_by("-timestamp")
+        ).order_by("-time_changed")

@@ -23,4 +23,3 @@ class UserViewSet(viewsets.ModelViewSet):
             return [permissions.AllowAny()]
     
         return [permissions.IsAuthenticated()]
-
