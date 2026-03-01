@@ -1,0 +1,13 @@
+# Python junk
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+
+# Databases
+db.sqlite3
+db.sqlite3-journal
+
+# Media
+media/
