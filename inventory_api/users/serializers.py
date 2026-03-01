@@ -13,11 +13,13 @@ class UserSerializer(serializers.ModelSerializer):
         
 
     def validate(self,data):
-            # validate by checking password match
+            # validate by checking password length and match
             password = data.get("password")
             password_confirm = data.get("password_confirm")
 
             if password or password_confirm:
+                  if len(password) < 8:
+                     raise serializers.ValidationError({"password": "Password must be more than"})
                   if password != password_confirm:
                      raise serializers.ValidationError({"password": "Passwords do not match"})
             return data
