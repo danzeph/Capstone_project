@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 
+# use custom model from settings.py
 User = settings.AUTH_USER_MODEL
 
 class InventoryItem(models.Model):

@@ -13,6 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         
 
     def validate(self,data):
+            # validate by checking password match
             password = data.get("password")
             password_confirm = data.get("password_confirm")
 
@@ -22,6 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
             return data
 
     def create(self, validated_data):
+            "calling create_user to use its hashing method to hash password"
             validated_data.pop('password_confirm')
             user = User.objects.create_user(**validated_data)
             return user

@@ -3,6 +3,7 @@ from rest_framework import viewsets, permissions
 from django.contrib.auth import get_user_model
 from users.serializers import UserSerializer
 
+# Use custom user
 User = get_user_model()
 
 class UserViewSet(viewsets.ModelViewSet):

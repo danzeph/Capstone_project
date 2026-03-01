@@ -26,16 +26,19 @@ class InventoryViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', 'quantity', 'price', 'date_added']
 
     def get_queryset(self):
+        """Filter based on ownership of item"""
         return InventoryItem.objects.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
+        """save items by a user"""
         serializer.save(owner=self.request.user)
 
     def perform_update(self, serializer):
         instance = self.get_object()
         old_quantity = instance.quantity
         new_instance = serializer.save()
-
+        
+        # Checks if after update(patch, put) quantity changes then creeate a new history 
         if old_quantity != new_instance.quantity:
             InventoryChangeHistory.objects.create(
                 item=new_instance,

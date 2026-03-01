@@ -1,5 +1,7 @@
 # Python junk
 __pycache__/
+**/__pycache__
+**/*.py
 *.py[cod]
 *$py.class
 
@@ -9,5 +11,3 @@ __pycache__/
 db.sqlite3
 db.sqlite3-journal
 
-# Media
-media/
