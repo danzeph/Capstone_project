@@ -24,6 +24,7 @@ class InventoryItem(models.Model):
     
 
 class InventoryChangeHistory(models.Model):
+    """model for item log history"""
     item = models.ForeignKey(InventoryItem, on_delete=models.CASCADE, related_name="history")
     changed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 

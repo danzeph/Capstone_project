@@ -21,4 +21,6 @@ class UserViewSet(viewsets.ModelViewSet):
         """Allow anyone to register"""
         if self.action == 'create':
             return [permissions.AllowAny()]
+    
         return [permissions.IsAuthenticated()]
+
