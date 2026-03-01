@@ -3,7 +3,7 @@ from .models import InventoryItem
 from .serializers import InventoryChangeLogSerializer, InventoryItemSerializer, InventoryChangeLog, UserSerializer
 from .permissions import IsOwner
 from django_filters.rest_framework import DjangoFilterBackend
-from django.contrib.auth.models import User
+from .models import User
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -16,9 +16,11 @@ class InventoryItemViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, IsOwner]
 
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['category']
+    filterset_fields = ['category','price']
     search_fields = ['name']
     ordering_fields = ['name', 'quantity', 'price', 'date_added']
+    
+    ordering = ["-date_added"]
 
     def get_queryset(self):
         return InventoryItem.objects.filter(user=self.request.user)

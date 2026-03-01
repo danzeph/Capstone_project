@@ -48,16 +48,20 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    # Permission classes for operations, added here and in views for consistency
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    # Default filters. Added here and in views for consistency
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
+    # pagination for large data set
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+    # Datetime display format
     'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
 }
 
@@ -95,6 +99,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'inventory_management.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
@@ -124,6 +129,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom User Model
+AUTH_USER_MODEL = "inventory.User"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

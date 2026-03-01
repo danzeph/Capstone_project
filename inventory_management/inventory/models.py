@@ -1,13 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
-# class Category(models.Model):
-#     name = models.CharField(max_length=100)
-    
-#     def __str__(self):
-#         return self.name
-
+class User(AbstractUser):
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=150, unique=True)
 
 
 class InventoryItem(models.Model):
@@ -22,7 +19,7 @@ class InventoryItem(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='items')
 
-    ordering = ['-date_added']
+    # ordering = ['-date_added']
     def __str__(self):
         return f"{self.name} - Category: {self.category}"
 

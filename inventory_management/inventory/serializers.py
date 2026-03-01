@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import InventoryItem, InventoryChangeLog
-from django.contrib.auth.models import User
+from .models import User
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -9,14 +9,15 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id','username','email','password','confirm_password']
-        write_only_fields = 'password'
 
     def validate(self, data):
         """Checks if the two paswords are the same"""
-        if data.get('password') =! data.get('confirm_password')
-
+        if data['password'] != data['confirm_password']:
+            raise serializers.ValidationError({"password": "Passwords do not match"})
+        return data
     
     def create(self, validated_data):
+        validated_data.pop('confirm_password')
         user = User.objects.create_user(*validated_data)
         return user
 
