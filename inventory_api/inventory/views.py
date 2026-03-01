@@ -5,6 +5,7 @@ from inventory.serializers import InventoryChangeHistorySerializer, InventoryIte
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 User = get_user_model()
@@ -13,8 +14,13 @@ User = get_user_model()
 class InventoryViewSet(viewsets.ModelViewSet):
     serializer_class = InventoryItemSerializer
     permission_classes = [IsAuthenticated, IsOwner]
-
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = {
+            'category': ['exact'],
+            'price': ['exact', 'gte', 'lte'],
+            'quantity': ['lte'],  # for low stock
+        }
 
     search_fields = ['name','category']
     ordering_fields = ['name', 'quantity', 'price', 'date_added']

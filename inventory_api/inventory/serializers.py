@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from inventory.models import InventoryChangeHistory, InventoryItem
+from .models import InventoryChangeHistory, InventoryItem
+
 
 class InventoryItemSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.useername")
