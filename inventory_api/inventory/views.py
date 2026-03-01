@@ -18,8 +18,6 @@ class InventoryViewSet(viewsets.ModelViewSet):
 
     search_fields = ['name','category']
     ordering_fields = ['name', 'quantity', 'price', 'date_added']
-    
-    ordering = ["-date_added"]
 
     def get_queryset(self):
         return InventoryItem.objects.filter(owner=self.request.user)
@@ -34,10 +32,10 @@ class InventoryViewSet(viewsets.ModelViewSet):
 
         if old_quantity != new_instance.quantity:
             InventoryChangeHistory.objects.create(
-                item=instance,
+                item=new_instance,
                 changed_by=self.request.user,
                 old_quantity=old_quantity,
-                new_quantity=instance.quantity
+                new_quantity=new_instance.quantity
             )
 
 
