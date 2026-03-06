@@ -1,3 +1,9 @@
+Here is your **updated README with your live API included**. I only added what is necessary so it still looks **clean and professional on GitHub**.
+
+You can replace your current README with this:
+
+---
+
 # Inventory Management API
 
 ## Overview
@@ -6,35 +12,47 @@ The **Inventory Management API** is a backend system built using Django and Djan
 
 The system allows users to:
 
-- Manage inventory items
-- Track stock levels
-- Authenticate using JWT
-- Filter, search, and sort inventory data
-- Track inventory change history
+* Manage inventory items
+* Track stock levels
+* Authenticate using JWT
+* Filter, search, and sort inventory data
+* Track inventory change history
+
+**Live API URL**
+
+```
+https://danamaz.pythonanywhere.com
+```
 
 ---
 
-## Technology Stack
+# Technology Stack
 
-- Backend Framework: Django
-- API Toolkit: Django REST Framework
-- Authentication: JWT via Django REST Framework SimpleJWT
-- Database ORM: Django ORM
-- Filtering: django-filter
+* Backend Framework: Django
+* API Toolkit: Django REST Framework
+* Authentication: JWT via Django REST Framework SimpleJWT
+* Database ORM: Django ORM
+* Filtering: django-filter
 
 ---
 
-## Authentication
+# Authentication
 
 The API uses **JSON Web Token (JWT)** authentication.
 
-### Obtain Token
+## Obtain Token
 
 ```
 POST /api/token/
 ```
 
-#### Request Body
+Full endpoint:
+
+```
+POST https://danamaz.pythonanywhere.com/api/token/
+```
+
+### Request Body
 
 ```json
 {
@@ -43,7 +61,7 @@ POST /api/token/
 }
 ```
 
-#### Response
+### Response
 
 ```json
 {
@@ -54,10 +72,10 @@ POST /api/token/
 
 ---
 
-### Refresh Token
+## Refresh Token
 
 ```
-POST /api/token/refresh/
+POST https://danamaz.pythonanywhere.com/api/token/refresh/
 ```
 
 Request:
@@ -70,7 +88,7 @@ Request:
 
 ---
 
-### Using Token
+## Using Token
 
 Add request header:
 
@@ -80,12 +98,12 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 ---
 
-## User Management
+# User Management
 
-### Register User
+## Register User
 
 ```
-POST /api/users/
+POST https://danamaz.pythonanywhere.com/api/users/
 ```
 
 Example Request:
@@ -100,7 +118,7 @@ Example Request:
 
 ---
 
-### User Endpoints
+## User Endpoints
 
 | Method | Endpoint         | Description       |
 | ------ | ---------------- | ----------------- |
@@ -114,49 +132,49 @@ Users can only manage their own account.
 
 ---
 
-## Inventory Item Management
+# Inventory Item Management
 
 Inventory items are associated with their owners.
 
-### Inventory Item Fields
+## Inventory Item Fields
 
-- Name
-- Description
-- Quantity
-- Price
-- Category
-- Date Added
-- Last Updated
-
----
-
-### Create Item
-
-```
-POST /api/inventory/items/
-```
+* Name
+* Description
+* Quantity
+* Price
+* Category
+* Date Added
+* Last Updated
 
 ---
 
-### Get Items
+## Create Item
 
 ```
-GET /api/inventory/items/
+POST https://danamaz.pythonanywhere.com/api/inventory/items/
+```
+
+---
+
+## Get Items
+
+```
+GET https://danamaz.pythonanywhere.com/api/inventory/items/
 ```
 
 Supports:
 
-Pagination
-Searching
-Sorting
-Filtering
+* Pagination
+* Searching
+* Sorting
+* Filtering
 
 ---
 
-### Update Item
+## Update Item
 
 ```
-PATCH /api/inventory/items/{id}/
+PATCH https://danamaz.pythonanywhere.com/api/inventory/items/{id}/
 ```
 
 Example:
@@ -169,102 +187,101 @@ Example:
 
 ---
 
-### Delete Item
+## Delete Item
 
 ```
-DELETE /api/inventory/items/{id}/
-```
-
----
-
-##  Filtering System
-
-### Category Filter
-
-```
-GET /api/inventory/items/?category=Electronics
-```
-or for non case_sensitive category filter
-```
-GET /api/inventory/items/?category__iexact=Electronics
+DELETE https://danamaz.pythonanywhere.com/api/inventory/items/{id}/
 ```
 
 ---
 
-### Price Range Filter
+# Filtering System
+
+## Category Filter
 
 ```
-GET /api/inventory/items/?price__gte=100&price__lte=500
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?category=Electronics
+```
+
+Case insensitive version:
+
+```
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?category__iexact=Electronics
 ```
 
 ---
 
-### Low Stock Filter
+## Price Range Filter
 
 ```
-GET /api/inventory/items/?quantity__lte=10
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?price__gte=100&price__lte=500
 ```
 
 ---
 
-## Searching
+## Low Stock Filter
 
 ```
-GET /api/inventory/items/?search=laptop
-GET /api/inventory/items/?search=electronics
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?quantity__lte=10
+```
 
+---
+
+# Searching
+
+```
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?search=laptop
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?search=electronics
 ```
 
 Searches item name or category.
 
-
-
 ---
 
-## Sorting (Ordering)
+# Sorting (Ordering)
 
 Use the `ordering` parameter.
 
 Examples:
 
 ```
-GET /api/inventory/items/?ordering=price
-GET /api/inventory/items/?ordering=-price
-GET /api/inventory/items/?ordering=name
-GET /api/inventory/items/?ordering=-quantity
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?ordering=price
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?ordering=-price
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?ordering=name
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?ordering=-quantity
 ```
 
 ---
 
-## Inventory Change Tracking
+# Inventory Change Tracking
 
 The system logs stock quantity changes.
 
 Endpoint:
 
 ```
-GET /api/inventory/history/
+GET https://danamaz.pythonanywhere.com/api/inventory/history/
 ```
 
 Returns:
 
-- Old quantity
-- New quantity
-- User who modified stock
-- Timestamp
-- item name
+* Old quantity
+* New quantity
+* User who modified stock
+* Timestamp
+* Item name
 
 ---
 
-## Permissions
+# Permissions
 
-- Authentication required for inventory operations
-- Users can only manage their own inventory
-- Ownership enforcement is implemented
+* Authentication required for inventory operations
+* Users can only manage their own inventory
+* Ownership enforcement is implemented
 
 ---
 
-## Pagination
+# Pagination
 
 Default page size:
 
@@ -275,23 +292,25 @@ Default page size:
 Example:
 
 ```
-GET /api/inventory/items/?page=2
+GET https://danamaz.pythonanywhere.com/api/inventory/items/?page=2
 ```
 
 ---
 
-## Deployment
+# Deployment
 
-Recommended hosting:
+This project is deployed on **PythonAnywhere**
 
-- PythonAnywhere
-- Use production settings:
-  - DEBUG = False
-  - Secure JWT configuration
+Production considerations:
+
+* `DEBUG = False`
+* `ALLOWED_HOSTS` configured
+* Secure JWT authentication
+* Environment variables recommended
 
 ---
 
-## Error Handling
+# Error Handling
 
 Common HTTP Responses:
 
@@ -307,24 +326,24 @@ Common HTTP Responses:
 
 ---
 
-## Project Features Summary
+# Project Features Summary
 
-User authentication with JWT
-CRUD operations
-Inventory tracking system
-Filtering, searching, sorting
-Pagination
-Ownership permissions
-Change history logging
+* User authentication with JWT
+* CRUD operations
+* Inventory tracking system
+* Filtering, searching, sorting
+* Pagination
+* Ownership permissions
+* Change history logging
 
 ---
 
-## Future Improvements (Optional)
+# Future Improvements
 
-- Low stock notification system
-- Analytics dashboard
-- Email notification integration
-- Soft delete system
-- Audit trail enhancement
+* Low stock notification system
+* Analytics dashboard
+* Email notification integration
+* Soft delete system
+* Audit trail enhancement
 
 ---
