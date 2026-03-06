@@ -1,8 +1,6 @@
-from rest_framework.permissions import BasePermission, is_authenticated
+from rest_framework.permissions import BasePermission
 
 
 class IsOwner(BasePermission):
     def has_object_permission(self, request, view, obj):
-        if not request.user.is_authenticated:
-            return False
-        return obj.owner == request.user or request.user.is_staff
+        return obj.owner == request.user
