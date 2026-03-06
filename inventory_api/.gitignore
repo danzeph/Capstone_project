@@ -1,13 +1,27 @@
-# Python junk
+# Python cache files
 __pycache__/
-**/__pycache__
-**/*.py
 *.py[cod]
+*.pyc
+*.pyo
+*.pyd
 *$py.class
 
+# Virtual environments
+venv/
+env/
+.venv/
 
-
-# Databases
+# Django database
 db.sqlite3
 db.sqlite3-journal
+*.sqlite3
 
+# PythonAnywhere
+*.log
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
