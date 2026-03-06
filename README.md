@@ -110,7 +110,7 @@ Example Request:
 | PUT    | /api/users/{id}/ | Update user       |
 | DELETE | /api/users/{id}/ | Delete user       |
 
-⚠ Users can only manage their own account.
+Users can only manage their own account.
 
 ---
 
@@ -177,12 +177,16 @@ DELETE /api/inventory/items/{id}/
 
 ---
 
-## 🔍 Filtering System
+##  Filtering System
 
 ### Category Filter
 
 ```
 GET /api/inventory/items/?category=Electronics
+```
+or for non case_sensitive category filter
+```
+GET /api/inventory/items/?category__iexact=Electronics
 ```
 
 ---
@@ -207,9 +211,13 @@ GET /api/inventory/items/?quantity__lte=10
 
 ```
 GET /api/inventory/items/?search=laptop
+GET /api/inventory/items/?search=electronics
+
 ```
 
-Searches item name.
+Searches item name or category.
+
+
 
 ---
 
@@ -244,6 +252,7 @@ Returns:
 - New quantity
 - User who modified stock
 - Timestamp
+- item name
 
 ---
 
